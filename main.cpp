@@ -33,12 +33,19 @@ int main() {
 	glClear(GL_COLOR_BUFFER_BIT); // configure buffer swap for color buffer
 	glfwSwapBuffers(window); // swap buffer (change the color!)
 
-
+	float trueCondition = 0;
 
 	// Keep the window open unless the close button is pressed or something else closes the window
 	while (!glfwWindowShouldClose(window)) {
 		glfwPollEvents(); // process events sent to the window like resizing or clicking or window changes
-		glfwSwapBuffers(window); // swap buffer (change the color!)
+		if ((float) glfwGetTime() > trueCondition) {
+			trueCondition = glfwGetTime() + 0.5;
+			float a = (((int)glfwGetTime()) % 5) / 10.0;
+			glClearColor(a, 0.4f, a, 1.0f); //Orange; prepare to clear color and replace it (color back buffer)
+			glClear(GL_COLOR_BUFFER_BIT); // configure buffer swap for color buffer
+			glfwSwapBuffers(window); // swap buffer (change the color!)
+
+		}
 
 	}
 
