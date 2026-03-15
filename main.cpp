@@ -13,7 +13,7 @@ int main() {
 	// Tell GLFW we are using Core profile (vs. compatibility profile that has outdated commands to be back-compatible)
 
 	// create a window object with GLFW window datatype with a size of 800x800 pixels named "OpenGL Tutorial"
-	GLFWwindow* window = glfwCreateWindow(400, 225, "OpenGL Tutorial", NULL, NULL); // datatype* (width, height, name, fullscreen?, not important)
+	GLFWwindow* window = glfwCreateWindow(400, 225, "I made this", NULL, NULL); // datatype* (width, height, name, fullscreen?, not important)
 
 	//check to see if the window had an error generating (and if it does close it)
 	if (window == NULL){
