@@ -38,6 +38,8 @@ int main() {
 	// Keep the window open unless the close button is pressed or something else closes the window
 	while (!glfwWindowShouldClose(window)) {
 		glfwPollEvents(); // process events sent to the window like resizing or clicking or window changes
+		glfwSwapBuffers(window); // swap buffer (change the color!)
+
 	}
 
 	// delete the window when we are done with it
