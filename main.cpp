@@ -29,7 +29,7 @@ int main() {
 
 	glViewport(0,0, 800,800); // area of OpenGL we want to render in from an (x, y) of (0, 0) to (800, 800)
 
-	glClearColor(0.07f, 0.13f, 0.17f, 1.0f); //Navy Blue; prepare to clear color and replace it (color back buffer)
+	glClearColor(1.0f, 0.4f, 0.0f, 1.0f); //Orange; prepare to clear color and replace it (color back buffer)
 	glClear(GL_COLOR_BUFFER_BIT); // configure buffer swap for color buffer
 	glfwSwapBuffers(window); // swap buffer (change the color!)
 
