@@ -34,3 +34,6 @@ Thumbs.db
 #Log files
 *.log
 
+#Visual Studio folders and files
+.vs/
+x64/
