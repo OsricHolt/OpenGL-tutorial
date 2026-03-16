@@ -5,16 +5,17 @@ Following LearnOpenGL.com and OpenGL Tutorials youtube playlist to learn modern 
 ## Progress
 
 ### Completed:
-- [ ] Getting Started
-  - [ ] Creating a Window
-  - [ ] Hello Triangle
+  - [ ] Getting Started
+  - [x] Creating a Window
+  - [x] Triangle
+  - [ ] Index Buffer
+  - [ ] Organizing
   - [ ] Shaders
   - [ ] Textures
-  - [ ] Transformations
-  - [ ] Coordinate Systems
+  - [ ] Going 3D
   - [ ] Camera
 
-### Current: Creating a Window
+### Current: Index Buffer
 
 
 ## Resources
