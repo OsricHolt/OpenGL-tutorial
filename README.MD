@@ -5,10 +5,10 @@ Following LearnOpenGL.com and OpenGL Tutorials youtube playlist to learn modern 
 ## Progress
 
 ### Completed:
-  - [ ] Getting Started
+  - [x] Getting Started
   - [x] Creating a Window
   - [x] Triangle
-  - [ ] Index Buffer
+  - [x] Index Buffer
   - [ ] Organizing
   - [ ] Shaders
   - [ ] Textures
