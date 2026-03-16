@@ -30,13 +30,11 @@ int main() {
 
 	// Vertex coordinates
 	GLfloat vertices[] = {
-		-0.5f, -0.5f, 0.0f, // bottom left corner
-		0.5f, -0.5f, 0.0f, // bottom right corner
-		0.5f, 0.5f, 0.0f, // top right vertex
-		-0.5f, -0.5f, 0.0f, // bottom left corner
+		-0.5f, -0.5f, // bottom left corner
+		0.5f, -0.5f, // bottom right corner
+		0.5f, 0.5f, // top right vertex
 		-0.5f, 0.5f, 0.0f, // top left corner
-		0.5f, 0.5f, 0.0f, // top right vertex
-	}; // define the vertices of a triangle
+	}; // define the vertices of a square
 
 	// create a window object with GLFW window datatype with a size of 800x800 pixels named "OpenGL Tutorial"
 	GLFWwindow* window = glfwCreateWindow(800, 800, "OpenGL Tutorial", NULL, NULL); // datatype* (width, height, name, fullscreen?, not important)
@@ -93,7 +91,7 @@ int main() {
 	// STREAM - modify once, use few times; STATIC - use once, use many times; DYNAMIC - modify many times, used many times
 	//DRAW - vertices modify and used to draw;READ - get shader/buffer data; COPY - transfer data between buffers
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
 	//how to read VBO (vertex attribute index, values per vertex, value type, interger coordinates?, vertex stride(how much data between verteces, offset)
 	glEnableVertexAttribArray(0); //enable array (position of vertex attribute)
 
@@ -116,7 +114,7 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT); // configure buffer swap for color buffer
 		glUseProgram(shaderProgram); //select shader program
 		glBindVertexArray(VAO); // select vertex array (like pointing to vertex buffer
-		glDrawArrays(GL_TRIANGLES, 0, 6); //drawing function; (type of primitive, vertex starting index, amount of vertices)
+		glDrawArrays(GL_LINE_LOOP, 0, 4); //drawing function; (type of primitive, vertex starting index, amount of vertices)
 		glfwSwapBuffers(window); // swap buffer (display triangle!)
 
 
