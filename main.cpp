@@ -28,22 +28,6 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	// Tell GLFW we are using Core profile (vs. compatibility profile that has outdated commands to be back-compatible)
 
-	// Vertex coordinates
-	GLfloat vertices[] = {
-		-0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // bottom left vertex
-		0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // bottom right vertex
-		0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, // top middle vertex
-		-0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // left midpoint vertex
-		0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // right midpoint vertex
-		0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f, // bottom midpoint vertex
-	}; // define the vertices of a triangle
-
-	GLuint indices[] = {
-		0, 3, 5, // bottom left triangle
-		3, 2, 4, // top middle triangle
-		5, 4, 1 // bottom right triangle
-	};
-
 	// create a window object with GLFW window datatype with a size of 800x800 pixels named "OpenGL Tutorial"
 	GLFWwindow* window = glfwCreateWindow(800, 800, "OpenGL Tutorial", NULL, NULL); // datatype* (width, height, name, fullscreen?, not important)
 
@@ -82,6 +66,18 @@ int main() {
 	glDeleteShader(vertexShader); // now that shaders are "wrapped up", we clear the space they were using
 	glDeleteShader(fragmentShader); // now that shaders are "wrapped up", we clear the space they were using
 
+	// Vertex coordinates
+	GLfloat vertices[] = {
+		-0.5f, -0.5f, 0.0f, // bottom left vertex
+		0.5f, -0.5f, 0.0f, // bottom right vertex
+		-0.5f, 0.5f, 0.0f, // top left vertex
+		0.5f, 0.5f, 0.0f, // right midpoint vertex
+	}; // define the vertices of a triangle
+
+	GLuint indices[] = {
+		0, 1, 2,
+		1, 2, 3
+	};
 
 
 	// Now we send buffers (different from last lesson) to GPU from CPU (we want big batches for efficiency since slow)
@@ -127,7 +123,7 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT); // configure buffer swap for color buffer
 		glUseProgram(shaderProgram); //select shader program
 		glBindVertexArray(VAO); // select vertex array (like pointing to vertex buffer
-		glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0); // Element draw fxn (primitve (shape), # of indices drawn, datatype, indices index)
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0); // Element draw fxn (primitve (shape), # of indices drawn, datatype, indices index)
 		glfwSwapBuffers(window); // swap buffer (display triangle!)
 
 
