@@ -30,9 +30,12 @@ int main() {
 
 	// Vertex coordinates
 	GLfloat vertices[] = {
-		-0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // bottom left vertex
-		0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // bottom right vertex
-		0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, // top middle vertex
+		-0.5f, -0.5f, 0.0f, // bottom left corner
+		0.5f, -0.5f, 0.0f, // bottom right corner
+		0.5f, 0.5f, 0.0f, // top right vertex
+		-0.5f, -0.5f, 0.0f, // bottom left corner
+		-0.5f, 0.5f, 0.0f, // top left corner
+		0.5f, 0.5f, 0.0f, // top right vertex
 	}; // define the vertices of a triangle
 
 	// create a window object with GLFW window datatype with a size of 800x800 pixels named "OpenGL Tutorial"
@@ -113,7 +116,7 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT); // configure buffer swap for color buffer
 		glUseProgram(shaderProgram); //select shader program
 		glBindVertexArray(VAO); // select vertex array (like pointing to vertex buffer
-		glDrawArrays(GL_POINTS, 0, 3); //drawing function; (type of primitive, vertex starting index, amount of vertices)
+		glDrawArrays(GL_TRIANGLES, 0, 6); //drawing function; (type of primitive, vertex starting index, amount of vertices)
 		glfwSwapBuffers(window); // swap buffer (display triangle!)
 
 

@@ -5,7 +5,7 @@ Following LearnOpenGL.com and OpenGL Tutorials youtube playlist to learn modern 
 ## Progress
 
 ### Completed:
-  - [ ] Getting Started
+  - [X] Getting Started
   - [x] Creating a Window
   - [x] Triangle
   - [ ] Index Buffer
