@@ -33,7 +33,16 @@ int main() {
 		-0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // bottom left vertex
 		0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // bottom right vertex
 		0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, // top middle vertex
+		-0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // left midpoint vertex
+		0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // right midpoint vertex
+		0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f, // bottom midpoint vertex
 	}; // define the vertices of a triangle
+
+	GLuint indices[] = {
+		0, 3, 5, // bottom left triangle
+		3, 2, 4, // top middle triangle
+		5, 4, 1 // bottom right triangle
+	};
 
 	// create a window object with GLFW window datatype with a size of 800x800 pixels named "OpenGL Tutorial"
 	GLFWwindow* window = glfwCreateWindow(800, 800, "OpenGL Tutorial", NULL, NULL); // datatype* (width, height, name, fullscreen?, not important)
@@ -76,11 +85,12 @@ int main() {
 
 
 	// Now we send buffers (different from last lesson) to GPU from CPU (we want big batches for efficiency since slow)
-	GLuint VAO, VBO; //Vertex Buffer Object (VBO); usually an array of objects, but we only have one
+	GLuint VAO, VBO, EBO; //Vertex Buffer Object (VBO); usually an array of objects, but we only have one
 	//Vertex Array Object (VAO) points to buffers
 
 	glGenVertexArrays(1, &VAO); //MUST generate VAO BEFORE VBO
 	glGenBuffers(1, &VBO); // generate buffers (1 object, address of array of objects)
+	glGenBuffers(1, &EBO); // generate index buffer (1 object, address of array)
 	//binding is like selecting a target; firing a function that modifies bound object's type modifies the current object
 	glBindVertexArray(VAO); //select vertex array for VBO
 
@@ -90,12 +100,16 @@ int main() {
 	// STREAM - modify once, use few times; STATIC - use once, use many times; DYNAMIC - modify many times, used many times
 	//DRAW - vertices modify and used to draw;READ - get shader/buffer data; COPY - transfer data between buffers
 
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO); //GL_ELEMENT_ARRAY_BUFFER is for indices
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	//how to read VBO (vertex attribute index, values per vertex, value type, interger coordinates?, vertex stride(how much data between verteces, offset)
 	glEnableVertexAttribArray(0); //enable array (position of vertex attribute)
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0); //clear bind to avoid accidents
 	glBindVertexArray(0); //clear bind to avoid accidents
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0); //clear index buffer; clear after VAO because EBO stored in VAO and VAO can't remember EBO like it can VBO
 
 
 
@@ -113,7 +127,7 @@ int main() {
 		glClear(GL_COLOR_BUFFER_BIT); // configure buffer swap for color buffer
 		glUseProgram(shaderProgram); //select shader program
 		glBindVertexArray(VAO); // select vertex array (like pointing to vertex buffer
-		glDrawArrays(GL_TRIANGLES, 0, 3); //drawing function; (type of primitive, vertex starting index, amount of vertices)
+		glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0); // Element draw fxn (primitve (shape), # of indices drawn, datatype, indices index)
 		glfwSwapBuffers(window); // swap buffer (display triangle!)
 
 
@@ -122,6 +136,7 @@ int main() {
 
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
+	glDeleteBuffers(1, &EBO);
 	glDeleteProgram(shaderProgram);
 
 	// delete the window when we are done with it
