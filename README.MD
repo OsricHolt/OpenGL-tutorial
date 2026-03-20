@@ -9,13 +9,16 @@ Following LearnOpenGL.com and OpenGL Tutorials youtube playlist to learn modern 
   - [x] Creating a Window
   - [x] Triangle
   - [x] Index Buffer
-  - [ ] Organizing
-  - [ ] Shaders
+  - [x] Organizing
+  - [x] Shaders
   - [ ] Textures
   - [ ] Going 3D
   - [ ] Camera
+  - [ ] Lighting
+  - [ ] Specular Maps
+  - [ ] Types of Light
 
-### Current: Index Buffer
+### Current: Textures
 
 
 ## Resources
